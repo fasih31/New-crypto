@@ -1,187 +1,128 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* APOM Solutions - Next-Gen Web3 Platform Design System */
+/* NexaVault - Next-Gen Web3 Platform Design System */
 
 @layer base {
   :root {
-    /* Cyberpunk Theme (Default Dark) */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    
-    --card: 240 8% 8%;
-    --card-foreground: 0 0% 98%;
-    
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    
-    /* Neon Gradients */
-    --primary: 280 100% 70%;
+    /* NexaVault Dark Theme (Default) */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Emerald Primary */
+    --primary: 142 76% 36%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 300 100% 75%;
-    
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    
+    --primary-glow: 142 76% 46%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
     /* Feature Colors */
-    --accent: 160 84% 39%;
-    --accent-foreground: 0 0% 98%;
-    --accent-glow: 160 94% 50%;
-    
-    --defi: 195 100% 50%;
-    --defi-foreground: 240 10% 3.9%;
-    --defi-glow: 195 100% 65%;
-    
-    --gaming: 330 100% 55%;
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 38 92% 60%;
+
+    --defi: 217 91% 60%;
+    --defi-foreground: 0 0% 100%;
+    --defi-glow: 217 91% 70%;
+
+    --gaming: 280 100% 70%;
     --gaming-foreground: 0 0% 100%;
-    --gaming-glow: 330 100% 70%;
-    
-    --nft: 45 100% 55%;
-    --nft-foreground: 240 10% 3.9%;
-    --nft-glow: 45 100% 70%;
-    
-    --governance: 270 100% 65%;
+    --gaming-glow: 280 100% 80%;
+
+    --nft: 340 82% 52%;
+    --nft-foreground: 0 0% 100%;
+    --nft-glow: 340 82% 62%;
+
+    --governance: 200 98% 39%;
     --governance-foreground: 0 0% 100%;
-    --governance-glow: 270 100% 75%;
-    
-    --destructive: 0 84.2% 60.2%;
+    --governance-glow: 200 98% 49%;
+
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    
-    --border: 240 3.7% 20%;
-    --input: 240 3.7% 15.9%;
-    --ring: 280 100% 70%;
-    
+
+    --border: 217 33% 22%;
+    --input: 217 33% 17%;
+    --ring: 142 76% 36%;
+
     --radius: 0.75rem;
-    
-    --sidebar-background: 240 10% 5%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 280 100% 70%;
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 142 76% 36%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 280 100% 70%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 142 76% 36%;
   }
 
   .light {
-    /* Clean Light Theme */
+    /* NexaVault Light Theme */
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    
-    --card: 0 0% 98%;
-    --card-foreground: 240 10% 3.9%;
-    
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    
-    --primary: 280 80% 50%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 280 90% 60%;
-    
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    
-    --accent: 160 80% 35%;
-    --accent-foreground: 0 0% 100%;
-    --accent-glow: 160 90% 45%;
-    
-    --defi: 195 90% 45%;
-    --defi-foreground: 0 0% 100%;
-    --defi-glow: 195 100% 55%;
-    
-    --gaming: 330 90% 50%;
-    --gaming-foreground: 0 0% 100%;
-    --gaming-glow: 330 100% 60%;
-    
-    --nft: 45 90% 50%;
-    --nft-foreground: 0 0% 100%;
-    --nft-glow: 45 100% 60%;
-    
-    --governance: 270 90% 55%;
-    --governance-foreground: 0 0% 100%;
-    --governance-glow: 270 100% 65%;
-    
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 280 80% 50%;
-    
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 280 80% 50%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 280 80% 50%;
-  }
+    --foreground: 222 47% 11%;
 
-  .dark {
-    /* Enhanced Dark Theme */
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    
-    --card: 222.2 84% 7%;
-    --card-foreground: 210 40% 98%;
-    
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    
-    --primary: 280 100% 65%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --primary-glow: 290 100% 70%;
-    
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    
-    --accent: 160 84% 39%;
-    --accent-foreground: 210 40% 98%;
-    --accent-glow: 160 94% 50%;
-    
-    --defi: 195 100% 50%;
-    --defi-foreground: 222.2 84% 4.9%;
-    --defi-glow: 195 100% 65%;
-    
-    --gaming: 330 100% 55%;
-    --gaming-foreground: 210 40% 98%;
-    --gaming-glow: 330 100% 70%;
-    
-    --nft: 45 100% 55%;
-    --nft-foreground: 222.2 84% 4.9%;
-    --nft-glow: 45 100% 70%;
-    
-    --governance: 270 100% 65%;
-    --governance-foreground: 210 40% 98%;
-    --governance-glow: 270 100% 75%;
-    
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 280 100% 65%;
-    
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 280 100% 65%;
+    --card: 0 0% 98%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 142 76% 46%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 38 92% 60%;
+
+    --defi: 217 91% 60%;
+    --defi-foreground: 0 0% 100%;
+    --defi-glow: 217 91% 70%;
+
+    --gaming: 280 100% 70%;
+    --gaming-foreground: 0 0% 100%;
+    --gaming-glow: 280 100% 80%;
+
+    --nft: 340 82% 52%;
+    --nft-foreground: 0 0% 100%;
+    --nft-glow: 340 82% 62%;
+
+    --governance: 200 98% 39%;
+    --governance-foreground: 0 0% 100%;
+    --governance-glow: 200 98% 49%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 142 76% 36%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 142 76% 36%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 280 100% 65%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 142 76% 36%;
   }
 }
 
@@ -189,13 +130,13 @@
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground font-inter antialiased;
     min-height: 100vh;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   body::before {
     content: '';
     position: fixed;
@@ -204,13 +145,13 @@
     right: 0;
     bottom: 0;
     background: 
-      radial-gradient(circle at 20% 20%, hsl(var(--primary) / 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, hsl(var(--defi) / 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 60%, hsl(var(--gaming) / 0.1) 0%, transparent 50%);
+      radial-gradient(circle at 15% 15%, hsl(var(--primary) / 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 85%, hsl(var(--defi) / 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, hsl(var(--gaming) / 0.06) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
   }
-  
+
   #root {
     position: relative;
     z-index: 1;
@@ -221,81 +162,91 @@
   .gradient-primary {
     background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
   }
-  
+
   .gradient-defi {
     background: linear-gradient(135deg, hsl(var(--defi)), hsl(var(--defi-glow)));
   }
-  
+
   .gradient-gaming {
     background: linear-gradient(135deg, hsl(var(--gaming)), hsl(var(--gaming-glow)));
   }
-  
+
   .gradient-nft {
     background: linear-gradient(135deg, hsl(var(--nft)), hsl(var(--nft-glow)));
   }
-  
+
   .gradient-governance {
     background: linear-gradient(135deg, hsl(var(--governance)), hsl(var(--governance-glow)));
   }
-  
+
   .gradient-card {
-    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card) / 0.8));
+    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card) / 0.85));
   }
-  
+
   .glass-effect {
-    background: hsl(var(--card) / 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid hsl(var(--border) / 0.5);
+    background: hsl(var(--card) / 0.75);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border) / 0.6);
   }
-  
+
   .glow-primary {
-    box-shadow: 0 0 40px hsl(var(--primary) / 0.4), 0 0 80px hsl(var(--primary) / 0.2);
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.35), 0 0 60px hsl(var(--primary) / 0.15);
   }
-  
+
   .glow-defi {
-    box-shadow: 0 0 40px hsl(var(--defi) / 0.4), 0 0 80px hsl(var(--defi) / 0.2);
+    box-shadow: 0 0 30px hsl(var(--defi) / 0.35), 0 0 60px hsl(var(--defi) / 0.15);
   }
-  
+
   .glow-gaming {
-    box-shadow: 0 0 40px hsl(var(--gaming) / 0.4), 0 0 80px hsl(var(--gaming) / 0.2);
+    box-shadow: 0 0 30px hsl(var(--gaming) / 0.35), 0 0 60px hsl(var(--gaming) / 0.15);
   }
-  
+
   .glow-nft {
-    box-shadow: 0 0 40px hsl(var(--nft) / 0.4), 0 0 80px hsl(var(--nft) / 0.2);
+    box-shadow: 0 0 30px hsl(var(--nft) / 0.35), 0 0 60px hsl(var(--nft) / 0.15);
   }
-  
+
   .transition-smooth {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .transition-bounce {
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-  
+
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-25px) rotate(2deg); }
   }
-  
+
   @keyframes glow-pulse {
-    0%, 100% { opacity: 0.5; filter: brightness(1); }
-    50% { opacity: 1; filter: brightness(1.2); }
+    0%, 100% { opacity: 0.6; filter: brightness(1); }
+    50% { opacity: 1; filter: brightness(1.3); }
   }
-  
+
   @keyframes slide-in {
-    from { transform: translateY(20px); opacity: 0; }
+    from { transform: translateY(30px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
   }
-  
+
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
+
   .animate-float {
-    animation: float 6s ease-in-out infinite;
+    animation: float 7s ease-in-out infinite;
   }
-  
+
   .animate-glow {
-    animation: glow-pulse 2s ease-in-out infinite;
+    animation: glow-pulse 2.5s ease-in-out infinite;
   }
-  
+
   .animate-slide-in {
-    animation: slide-in 0.5s ease-out;
+    animation: slide-in 0.6s ease-out;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s linear infinite;
+    background-size: 1000px 100%;
   }
 }

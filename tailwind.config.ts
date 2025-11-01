@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -12,7 +13,13 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: {
+				DEFAULT: '1rem',
+				sm: '2rem',
+				lg: '4rem',
+				xl: '5rem',
+				'2xl': '6rem',
+			},
 			screens: {
 				'2xl': '1400px'
 			}
@@ -107,26 +114,37 @@ export default {
 				},
 				'float': {
 					'0%, 100%': {
-						transform: 'translateY(0px)'
+						transform: 'translateY(0px) rotate(0deg)'
 					},
 					'50%': {
-						transform: 'translateY(-20px)'
+						transform: 'translateY(-25px) rotate(2deg)'
 					}
 				},
 				'glow': {
 					'0%, 100%': {
-						opacity: '0.5'
+						opacity: '0.6',
+						filter: 'brightness(1)'
 					},
 					'50%': {
-						opacity: '1'
+						opacity: '1',
+						filter: 'brightness(1.3)'
+					}
+				},
+				'shimmer': {
+					'0%': {
+						backgroundPosition: '-1000px 0'
+					},
+					'100%': {
+						backgroundPosition: '1000px 0'
 					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'float': 'float 6s ease-in-out infinite',
-				'glow': 'glow 2s ease-in-out infinite'
+				'float': 'float 7s ease-in-out infinite',
+				'glow': 'glow 2.5s ease-in-out infinite',
+				'shimmer': 'shimmer 3s linear infinite'
 			}
 		}
 	},

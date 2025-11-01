@@ -6,16 +6,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-20 border-t border-border/50 backdrop-blur-sm">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <footer className="relative mt-24 border-t border-border/60 backdrop-blur-sm bg-card/30">
+      <div className="container mx-auto px-4 py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           {/* Brand */}
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              APOM Solutions
+          <div className="space-y-5">
+            <h3 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              NexaVault
             </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              The ultimate Web3 ecosystem for gaming, DeFi, NFTs, and governance.
+            <p className="text-sm text-muted-foreground leading-relaxed font-medium">
+              Your trusted gateway to decentralized innovation. Secure, transparent, and community-driven.
             </p>
             <div className="flex gap-3">
               {[
@@ -29,7 +29,7 @@ const Footer = () => {
                   <a
                     key={i}
                     href={social.href}
-                    className="w-10 h-10 rounded-lg glass-effect border border-border/50 flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all group"
+                    className="w-11 h-11 rounded-xl glass-effect border border-border/60 flex items-center justify-center hover:border-primary/60 hover:bg-primary/10 transition-all group"
                   >
                     <Icon className="w-4 h-4 group-hover:text-primary transition-colors" />
                   </a>
@@ -40,16 +40,16 @@ const Footer = () => {
 
           {/* Platform */}
           <div>
-            <h4 className="font-semibold mb-4 text-foreground">Platform</h4>
-            <ul className="space-y-2">
+            <h4 className="font-bold mb-5 text-foreground text-lg">Platform</h4>
+            <ul className="space-y-3">
               {[
                 { name: "Gaming", to: "/gaming" },
-                { name: "DeFi", to: "/defi" },
+                { name: "DeFi Trading", to: "/defi" },
                 { name: "NFT Marketplace", to: "/nft-marketplace" },
                 { name: "Launchpad", to: "/launchpad" }
               ].map((link) => (
                 <li key={link.name}>
-                  <Link to={link.to} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <Link to={link.to} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -59,11 +59,11 @@ const Footer = () => {
 
           {/* Resources */}
           <div>
-            <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
-            <ul className="space-y-2">
-              {["Documentation", "API", "Security", "Audit Reports"].map((item) => (
+            <h4 className="font-bold mb-5 text-foreground text-lg">Resources</h4>
+            <ul className="space-y-3">
+              {["Documentation", "API Access", "Security Audit", "Help Center"].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <a href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                     {item}
                   </a>
                 </li>
@@ -73,11 +73,11 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold mb-4 text-foreground">Company</h4>
-            <ul className="space-y-2">
-              {["About", "Careers", "Blog", "Contact"].map((item) => (
+            <h4 className="font-bold mb-5 text-foreground text-lg">Company</h4>
+            <ul className="space-y-3">
+              {["About Us", "Join Our Team", "News & Updates", "Contact"].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <a href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                     {item}
                   </a>
                 </li>
@@ -86,11 +86,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {currentYear} APOM Solutions. All rights reserved.
+        <div className="pt-8 border-t border-border/60 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground font-medium text-center sm:text-left">
+            © {currentYear} NexaVault. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground font-medium">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
             <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>

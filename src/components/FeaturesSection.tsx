@@ -1,115 +1,115 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Gamepad2, TrendingUp, Image, Rocket, Vote, Lock } from "lucide-react";
+import { Gamepad2, TrendingUp, Image, Rocket, Vote, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 
 const features = [
   {
     icon: Gamepad2,
-    title: "Play-to-Earn Gaming",
-    description: "Immerse yourself in blockchain gaming with real rewards. Compete, collect, and earn while having fun.",
+    title: "GameFi Universe",
+    description: "Dive into immersive blockchain games where skill meets rewards. Compete globally and monetize your gameplay.",
     gradient: "gradient-gaming",
     glow: "glow-gaming",
     link: "/gaming",
-    stats: "10+ Games"
+    stats: "15+ Games"
   },
   {
     icon: TrendingUp,
-    title: "DeFi Exchange",
-    description: "Trade, stake, and provide liquidity with industry-leading yields. Your gateway to decentralized finance.",
+    title: "DeFi Trading Hub",
+    description: "Access premium liquidity pools and staking options. Maximize returns with our intelligent yield optimization.",
     gradient: "gradient-defi",
     glow: "glow-defi",
     link: "/defi",
-    stats: "150% APY"
+    stats: "180% APY"
   },
   {
     icon: Image,
     title: "NFT Marketplace",
-    description: "Discover, create, and trade unique digital assets. Join the revolution of digital ownership.",
+    description: "Mint, collect, and trade exclusive digital assets. Join a vibrant community of creators and collectors.",
     gradient: "gradient-nft",
     glow: "glow-nft",
     link: "/nft-marketplace",
-    stats: "50K+ NFTs"
+    stats: "75K+ Assets"
   },
   {
     icon: Rocket,
-    title: "Token Launchpad",
-    description: "Launch your project or invest early in groundbreaking Web3 ventures with our secure IDO platform.",
+    title: "Launch Platform",
+    description: "Discover promising Web3 projects early. Participate in vetted token launches with exclusive access.",
     gradient: "gradient-primary",
     glow: "glow-primary",
     link: "/launchpad",
-    stats: "20+ Projects"
+    stats: "30+ Launches"
   },
   {
     icon: Vote,
-    title: "DAO Governance",
-    description: "Shape the platform's future through democratic voting. Your voice matters in our community.",
+    title: "Community Governance",
+    description: "Shape NexaVault's evolution through decentralized voting. Your stake determines your influence.",
     gradient: "gradient-governance",
     glow: "glow-primary",
     link: "/governance",
-    stats: "100K+ Votes"
+    stats: "250K+ Voters"
   },
   {
-    icon: Lock,
-    title: "Multi-Sig Security",
-    description: "Enterprise-grade security with multi-signature wallets, advanced encryption, and regular audits.",
+    icon: Shield,
+    title: "Advanced Security",
+    description: "Multi-layer protection with regular audits, insurance coverage, and emergency protocols.",
     gradient: "gradient-accent",
     glow: "glow-primary",
     link: "/",
-    stats: "Bank-Grade"
+    stats: "Audited"
   },
 ];
 
 const FeaturesSection = () => {
   return (
-    <section className="py-24 px-4 relative">
+    <section className="py-20 sm:py-28 px-4 relative">
       <div className="container mx-auto">
-        <div className="text-center mb-16 space-y-4 animate-slide-in">
-          <h2 className="text-5xl md:text-6xl font-black">
+        <div className="text-center mb-16 sm:mb-20 space-y-5 animate-slide-in">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
             <span className="bg-gradient-to-r from-primary via-accent to-defi bg-clip-text text-transparent">
-              Powerful Features
+              Complete Web3 Ecosystem
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need for the complete Web3 experience, all in one platform
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
+            Everything you need for decentralized finance, gaming, and digital ownership
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <Card 
                 key={index} 
-                className="group glass-effect border-border/50 hover:border-primary/50 overflow-hidden relative"
+                className="group glass-effect border-border/60 hover:border-primary/50 overflow-hidden relative transition-all duration-300"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
                 
-                <CardHeader className="relative">
-                  <div className={`w-16 h-16 rounded-2xl ${feature.gradient} flex items-center justify-center mb-4 ${feature.glow} group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="w-8 h-8 text-white" />
+                <CardHeader className="relative pb-4">
+                  <div className={`w-16 h-16 sm:w-18 sm:h-18 rounded-2xl ${feature.gradient} flex items-center justify-center mb-5 ${feature.glow} group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className="w-8 h-8 sm:w-9 sm:h-9 text-white" />
                   </div>
-                  <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors">
+                  <CardTitle className="text-xl sm:text-2xl font-bold group-hover:text-primary transition-colors">
                     {feature.title}
                   </CardTitle>
-                  <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mt-2">
+                  <div className="inline-block px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold mt-3">
                     {feature.stats}
                   </div>
                 </CardHeader>
 
-                <CardContent className="relative space-y-4">
-                  <CardDescription className="text-base leading-relaxed">
+                <CardContent className="relative space-y-5 pt-0">
+                  <CardDescription className="text-sm sm:text-base leading-relaxed font-medium">
                     {feature.description}
                   </CardDescription>
                   
                   <Link to={feature.link}>
                     <Button 
                       variant="ghost" 
-                      className="w-full group-hover:bg-primary/10 group-hover:text-primary transition-all"
+                      className="w-full group-hover:bg-primary/10 group-hover:text-primary transition-all font-semibold"
                     >
-                      Explore Now →
+                      Explore Feature →
                     </Button>
                   </Link>
                 </CardContent>
