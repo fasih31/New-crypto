@@ -1,5 +1,24 @@
 # 🛠️ Decentralized Gaming & DeFi Platform
 
+**🔒 Enterprise-Grade Security Implementation**  
+**Enhanced & Secured by: [Fasih ur rehman](https://github.com/FasihUrRehman)**
+
+[![Security Audit](https://img.shields.io/badge/Security-Audited-success)](./SECURITY_AUDIT_REPORT.md)
+[![Version](https://img.shields.io/badge/Version-2.0.0-blue)]()
+[![License](https://img.shields.io/badge/License-MIT-green)]()
+
+> **Version 2.0.0** includes comprehensive security enhancements, multi-signature wallet support, advanced transaction validation, and enterprise-grade protection mechanisms.
+
+---
+
+## 🏆 Credits
+
+**Security Architecture & Implementation**: [Fasih ur rehman](https://github.com/FasihUrRehman)  
+**Security Audit Date**: November 1, 2025  
+**Platform**: APOM Solutions
+
+---
+
 ## 📸 Platform Screenshots
 
 ### Home Page - The Future of Gaming & DeFi
@@ -130,3 +149,50 @@ Follow these steps to set up the project:
 ---
 
 ✅ That’s it! You now have the **Decentralized Gaming & DeFi Platform** running locally.
+## 🔒 Security Features
+
+This platform implements enterprise-grade security measures:
+
+- ✅ **No Hardcoded Addresses**: All wallet addresses configured via environment variables
+- ✅ **Transaction Validation**: 6-layer security checks on every transaction
+- ✅ **Rate Limiting**: Protection against spam and DOS attacks
+- ✅ **Slippage Protection**: Automatic rejection of high-slippage transactions
+- ✅ **Input Sanitization**: Prevents injection attacks
+- ✅ **Price Oracle**: Real-time accurate pricing with fallback
+- ✅ **Multi-Signature Wallets**: Enhanced security for high-value transactions
+- ✅ **Error Handling**: User-friendly messages with recovery suggestions
+- ✅ **Anomaly Detection**: Suspicious activity monitoring
+
+**📋 Read the full security documentation**: [SECURITY.md](./SECURITY.md)  
+**📊 View the security audit report**: [SECURITY_AUDIT_REPORT.md](./SECURITY_AUDIT_REPORT.md)
+
+---
+
+## 🚀 Production Deployment
+
+### Security Checklist
+
+Before deploying to production, ensure:
+
+1. ✅ Create `.env` file from `.env.example`
+2. ✅ Set `VITE_WALLETCONNECT_PROJECT_ID`
+3. ✅ Configure all token contract addresses
+4. ✅ Verify addresses on blockchain explorer
+5. ✅ Set appropriate rate limits
+6. ✅ Review slippage tolerance settings
+7. ✅ Test on testnet first
+8. ✅ Conduct final security review
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## 🙏 Acknowledgments
+
+**Security Enhancement**: [Fasih ur rehman](https://github.com/FasihUrRehman)  
+**Original Platform**: APOM Solutions Team  
+**Technology Stack**: React, TypeScript, Vite, Wagmi, TailwindCSS

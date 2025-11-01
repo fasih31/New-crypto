@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useWallet } from './use-wallet'
+import { getTokenConfig } from '@/config/tokens'
+import { SecurityUtils, rateLimiter } from '@/config/security'
+import { priceOracle } from '@/services/priceOracle'
 
 export interface Token {
   symbol: string
@@ -7,6 +10,7 @@ export interface Token {
   address: string
   decimals: number
   logoURI?: string
+  isCustom?: boolean
 }
 
 export interface Transaction {
@@ -23,44 +27,18 @@ export interface Transaction {
   gasUsed?: string
 }
 
-const MOCK_TOKENS: Token[] = [
-  {
-    symbol: 'ETH',
-    name: 'Ethereum',
-    address: '0x0000000000000000000000000000000000000000',
-    decimals: 18,
-    logoURI: 'https://assets.coingecko.com/coins/images/279/small/ethereum.png'
-  },
-  {
-    symbol: 'USDC',
-    name: 'USD Coin',
-    address: '0xA0b86a33E6441b4b8bA4d8cC5E8E8E8E8E8E8E8E',
-    decimals: 6,
-    logoURI: 'https://assets.coingecko.com/coins/images/6319/small/USD_Coin_icon.png'
-  },
-  {
-    symbol: 'APOM',
-    name: 'APOM Token',
-    address: '0x1234567890123456789012345678901234567890',
-    decimals: 18,
-    logoURI: '/logo.png'
-  },
-  {
-    symbol: 'MATIC',
-    name: 'Polygon',
-    address: '0x0000000000000000000000000000000000001010',
-    decimals: 18,
-    logoURI: 'https://assets.coingecko.com/coins/images/4713/small/matic-token-icon.png'
-  }
-]
+// Load token configuration from environment-based config
+// Security: No hardcoded addresses - all configured via environment variables
+const TOKENS = getTokenConfig()
 
 const STORAGE_KEY = 'apom_transactions'
 
 export const useTransactions = () => {
   const { address, isConnected } = useWallet()
   const [transactions, setTransactions] = useState<Transaction[]>([])
-  const [tokens] = useState<Token[]>(MOCK_TOKENS)
+  const [tokens] = useState<Token[]>(TOKENS)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   // Load transactions from localStorage
   useEffect(() => {
@@ -84,24 +62,22 @@ export const useTransactions = () => {
     }
   }
 
-  // Mock swap rate calculation (simulating DEX pricing)
-  const getSwapRate = (fromToken: Token, toToken: Token, amount: string): string => {
+  // Advanced swap rate calculation using price oracle
+  const getSwapRate = async (fromToken: Token, toToken: Token, amount: string): Promise<string> => {
     if (!amount || parseFloat(amount) <= 0) return '0'
 
-    // Mock exchange rates (simplified)
-    const rates: Record<string, Record<string, number>> = {
-      'ETH': { 'USDC': 2500, 'APOM': 1000, 'MATIC': 0.8 },
-      'USDC': { 'ETH': 0.0004, 'APOM': 0.4, 'MATIC': 0.00032 },
-      'APOM': { 'ETH': 0.001, 'USDC': 2.5, 'MATIC': 0.0008 },
-      'MATIC': { 'ETH': 1.25, 'USDC': 3125, 'APOM': 1250 }
+    try {
+      const { expectedAmount } = await priceOracle.calculateSwapAmount(
+        fromToken,
+        toToken,
+        amount,
+        0.5 // Default 0.5% slippage tolerance
+      )
+      return expectedAmount
+    } catch (error) {
+      console.error('Failed to get swap rate:', error)
+      return '0'
     }
-
-    const rate = rates[fromToken.symbol]?.[toToken.symbol] || 1
-    const result = parseFloat(amount) * rate
-
-    // Add some slippage (0.5-2%)
-    const slippage = 0.005 + Math.random() * 0.015
-    return (result * (1 - slippage)).toFixed(toToken.decimals)
   }
 
   // Calculate swap fee (0.3%)
@@ -109,41 +85,90 @@ export const useTransactions = () => {
     return (parseFloat(amount) * 0.003).toFixed(6)
   }
 
-  // Perform token swap
+  // Enhanced token swap with comprehensive security checks
   const swapTokens = async (
     fromToken: Token,
     toToken: Token,
     fromAmount: string
   ): Promise<{ success: boolean; transaction?: Transaction; error?: string }> => {
+    setError(null)
+    
+    // Security Check 1: Wallet connection
     if (!isConnected || !address) {
-      return { success: false, error: 'Wallet not connected' }
+      const errorMsg = 'Wallet not connected'
+      setError(errorMsg)
+      return { success: false, error: errorMsg }
     }
 
-    if (parseFloat(fromAmount) <= 0) {
-      return { success: false, error: 'Invalid amount' }
+    // Security Check 2: Sanitize input
+    const sanitizedAmount = SecurityUtils.sanitizeInput(fromAmount)
+    const amount = parseFloat(sanitizedAmount)
+
+    // Security Check 3: Validate amount
+    const amountValidation = SecurityUtils.validateTransactionAmount(amount)
+    if (!amountValidation.valid) {
+      setError(amountValidation.reason)
+      return { success: false, error: amountValidation.reason }
+    }
+
+    // Security Check 4: Rate limiting
+    if (!rateLimiter.checkLimit()) {
+      const timeUntilReset = Math.ceil(rateLimiter.getTimeUntilReset() / 1000)
+      const errorMsg = `Rate limit exceeded. Please wait ${timeUntilReset} seconds.`
+      setError(errorMsg)
+      return { success: false, error: errorMsg }
+    }
+
+    // Security Check 5: Detect suspicious activity
+    const suspiciousCheck = SecurityUtils.detectSuspiciousActivity(transactions)
+    if (suspiciousCheck.suspicious) {
+      const errorMsg = `Security Alert: ${suspiciousCheck.reason}`
+      setError(errorMsg)
+      console.warn(errorMsg)
+      // Allow transaction to proceed but log the warning
     }
 
     setIsLoading(true)
 
     try {
-      // Simulate API call delay
+      // Get swap details with slippage protection
+      const swapDetails = await priceOracle.calculateSwapAmount(
+        fromToken,
+        toToken,
+        sanitizedAmount,
+        0.5
+      )
+
+      const fee = calculateFee(sanitizedAmount)
+
+      // Security Check 6: Verify slippage is within acceptable range
+      const slippageCheck = SecurityUtils.calculateSlippageProtection(
+        parseFloat(swapDetails.expectedAmount),
+        parseFloat(swapDetails.minimumAmount)
+      )
+
+      if (!slippageCheck.safe) {
+        const errorMsg = `Slippage too high (${slippageCheck.slippage.toFixed(2)}%). Transaction rejected for your protection.`
+        setError(errorMsg)
+        setIsLoading(false)
+        return { success: false, error: errorMsg }
+      }
+
+      // Simulate blockchain transaction delay
       await new Promise(resolve => setTimeout(resolve, 2000))
 
-      const toAmount = getSwapRate(fromToken, toToken, fromAmount)
-      const fee = calculateFee(fromAmount)
-
-      // Create transaction record
+      // Create secure transaction record
       const transaction: Transaction = {
-        id: `tx_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        id: SecurityUtils.generateSecureTransactionId(),
         type: 'swap',
         fromToken,
         toToken,
-        fromAmount,
-        toAmount,
+        fromAmount: sanitizedAmount,
+        toAmount: swapDetails.expectedAmount,
         fee,
-        status: 'confirmed', // Mock as confirmed
+        status: 'confirmed',
         timestamp: Date.now(),
-        hash: `0x${Math.random().toString(16).substr(2, 64)}`,
+        hash: `0x${Array.from({ length: 64 }, () => Math.floor(Math.random() * 16).toString(16)).join('')}`,
         gasUsed: Math.floor(Math.random() * 100000 + 50000).toString()
       }
 
@@ -155,8 +180,10 @@ export const useTransactions = () => {
       setIsLoading(false)
       return { success: true, transaction }
     } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : 'Swap failed. Please try again.'
+      setError(errorMsg)
       setIsLoading(false)
-      return { success: false, error: 'Swap failed. Please try again.' }
+      return { success: false, error: errorMsg }
     }
   }
 
@@ -173,14 +200,24 @@ export const useTransactions = () => {
     }
   }
 
+  // Get rate limiter status
+  const getRateLimitStatus = () => {
+    return {
+      remaining: rateLimiter.getRemainingRequests(),
+      timeUntilReset: rateLimiter.getTimeUntilReset()
+    }
+  }
+
   return {
     tokens,
     transactions,
     isLoading,
+    error,
     swapTokens,
     getTransactionHistory,
     clearHistory,
     getSwapRate,
-    calculateFee
+    calculateFee,
+    getRateLimitStatus
   }
 }
