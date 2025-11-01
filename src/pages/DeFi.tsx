@@ -27,7 +27,7 @@ const defiPools = [
     type: "Gaming Pool"
   },
   {
-    pair: "USDC/APOM", 
+    pair: "USDC/APOM",
     tvl: "$1.8M",
     apy: "89.5%",
     volume24h: "$312K",
@@ -35,7 +35,7 @@ const defiPools = [
   },
   {
     pair: "BTC/ETH",
-    tvl: "$5.2M", 
+    tvl: "$5.2M",
     apy: "32.1%",
     volume24h: "$1.2M",
     type: "Blue Chip"
@@ -44,7 +44,7 @@ const defiPools = [
     pair: "GAME/APOM",
     tvl: "$890K",
     apy: "234.7%",
-    volume24h: "$156K", 
+    volume24h: "$156K",
     type: "New Launch"
   }
 ];

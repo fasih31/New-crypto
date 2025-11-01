@@ -1,110 +1,99 @@
-import { Button } from "@/components/ui/button";
-import { 
-  Twitter, 
-  Github, 
-  MessageCircle, 
-  Mail, 
-  ExternalLink 
-} from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/logo.png";
 
-
+import { Twitter, Github, MessageCircle, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-secondary/20 border-t border-border mt-20">
+    <footer className="relative mt-20 border-t border-border/50 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
-                <img src={logo} alt="Logo" />
-                {/* <span className="text-lg font-bold text-primary-foreground">A</span> */}
-              </div>
-              <span className="text-lg font-bold gradient-primary bg-clip-text text-transparent">
-                APOM DApp
-              </span>
-            </div>
-            <p className="text-muted-foreground text-sm">
-              The ultimate decentralized platform for gaming, DeFi, and NFTs. 
-              Built for the future of Web3.
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              APOM Solutions
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              The ultimate Web3 ecosystem for gaming, DeFi, NFTs, and governance.
             </p>
-            {/* <div className="flex space-x-2">
-              <Button variant="ghost" size="icon">
-                <Twitter className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Github className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <MessageCircle className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Mail className="w-4 h-4" />
-              </Button>
-            </div> */}
+            <div className="flex gap-3">
+              {[
+                { icon: Twitter, href: "#" },
+                { icon: Github, href: "#" },
+                { icon: MessageCircle, href: "#" },
+                { icon: Mail, href: "#" }
+              ].map((social, i) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={i}
+                    href={social.href}
+                    className="w-10 h-10 rounded-lg glass-effect border border-border/50 flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all group"
+                  >
+                    <Icon className="w-4 h-4 group-hover:text-primary transition-colors" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
           {/* Platform */}
           <div>
-            <h3 className="font-semibold mb-4">Platform</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link  to="/gaming" className="hover:text-gaming transition-smooth">Gaming Hub</Link></li>
-              <li><Link  to="/defi" className="hover:text-gaming transition-smooth">DeFi Exchange</Link></li>
-              <li><Link  to="/nft-marketplace" className="hover:text-gaming transition-smooth">NFT Marketplace</Link></li>
-              <li><Link  to="/launchpad" className="hover:text-gaming transition-smooth">Launchpad</Link></li>
-              <li><Link  to="/governance" className="hover:text-gaming transition-smooth">Governance</Link></li>
+            <h4 className="font-semibold mb-4 text-foreground">Platform</h4>
+            <ul className="space-y-2">
+              {[
+                { name: "Gaming", to: "/gaming" },
+                { name: "DeFi", to: "/defi" },
+                { name: "NFT Marketplace", to: "/nft-marketplace" },
+                { name: "Launchpad", to: "/launchpad" }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link to={link.to} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Developers */}
+          {/* Resources */}
           <div>
-            <h3 className="font-semibold mb-4">Developers</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-smooth flex items-center">
-                API Documentation <ExternalLink className="w-3 h-3 ml-1" />
-              </a></li>
-              <li><a href="#" className="hover:text-foreground transition-smooth flex items-center">
-                SDK & Tools <ExternalLink className="w-3 h-3 ml-1" />
-              </a></li>
-              <li><a href="#" className="hover:text-foreground transition-smooth flex items-center">
-                Smart Contracts <ExternalLink className="w-3 h-3 ml-1" />
-              </a></li>
-              <li><a href="#" className="hover:text-foreground transition-smooth">Bug Bounty</a></li>
-              <li><a href="#" className="hover:text-foreground transition-smooth">GitHub</a></li>
+            <h4 className="font-semibold mb-4 text-foreground">Resources</h4>
+            <ul className="space-y-2">
+              {["Documentation", "API", "Security", "Audit Reports"].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Supported Networks */}
+          {/* Company */}
           <div>
-            <h3 className="font-semibold mb-4">Networks</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Ethereum</li>
-              <li>Polygon</li>
-              <li>Binance Smart Chain</li>
-              <li>Polkadot</li>
-              <li>Arbitrum</li>
+            <h4 className="font-semibold mb-4 text-foreground">Company</h4>
+            <ul className="space-y-2">
+              {["About", "Careers", "Blog", "Contact"].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2025 APOM Solutions. All rights reserved.
+            © {currentYear} APOM Solutions. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-smooth">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-smooth">
-              Terms of Service
-            </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-smooth">
-              Security
-            </a>
+          <div className="flex gap-6 text-sm text-muted-foreground">
+            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
           </div>
         </div>
       </div>

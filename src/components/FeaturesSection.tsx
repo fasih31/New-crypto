@@ -1,208 +1,119 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Gamepad2,
-  TrendingUp,
-  Image,
-  Rocket,
-  Vote,
-  BarChart3,
-  Zap,
-  Shield,
-  Globe,
-} from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Gamepad2, TrendingUp, Image, Rocket, Vote, Lock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
 
 const features = [
   {
-    id: "gaming",
     icon: Gamepad2,
-    title: "On-Chain Gaming",
-    description:
-      "Experience immersive blockchain games with true asset ownership and play-to-earn mechanics.",
+    title: "Play-to-Earn Gaming",
+    description: "Immerse yourself in blockchain gaming with real rewards. Compete, collect, and earn while having fun.",
     gradient: "gradient-gaming",
-    shadowClass: "shadow-gaming",
-    features: [
-      "NFT Game Assets",
-      "Play-to-Earn",
-      "Cross-Game Items",
-      "Tournament Rewards",
-    ],
+    glow: "glow-gaming",
+    link: "/gaming",
+    stats: "10+ Games"
   },
   {
-    id: "defi",
     icon: TrendingUp,
-    title: "DeFi Trading",
-    description:
-      "Trade tokens, provide liquidity, and earn rewards with advanced DeFi protocols.",
+    title: "DeFi Exchange",
+    description: "Trade, stake, and provide liquidity with industry-leading yields. Your gateway to decentralized finance.",
     gradient: "gradient-defi",
-    shadowClass: "shadow-defi",
-    features: [
-      "Token Swaps",
-      "Liquidity Pools",
-      "Yield Farming",
-      "Staking Rewards",
-    ],
+    glow: "glow-defi",
+    link: "/defi",
+    stats: "150% APY"
   },
   {
-    id: "nft-marketplace",
     icon: Image,
     title: "NFT Marketplace",
-    description:
-      "Buy, sell, and trade unique digital assets across multiple gaming ecosystems.",
+    description: "Discover, create, and trade unique digital assets. Join the revolution of digital ownership.",
     gradient: "gradient-nft",
-    shadowClass: "shadow-nft",
-    features: [
-      "Art Collections",
-      "Gaming NFTs",
-      "Royalty System",
-      "Cross-Chain",
-    ],
+    glow: "glow-nft",
+    link: "/nft-marketplace",
+    stats: "50K+ NFTs"
   },
   {
-    id: "launchpad",
     icon: Rocket,
-    title: "Project Launchpad",
-    description:
-      "Discover and invest in promising new gaming and DeFi projects before they launch.",
+    title: "Token Launchpad",
+    description: "Launch your project or invest early in groundbreaking Web3 ventures with our secure IDO platform.",
     gradient: "gradient-primary",
-    shadowClass: "shadow-primary",
-    features: [
-      "IDO Platform",
-      "Early Access",
-      "Vetting Process",
-      "Community Voting",
-    ],
+    glow: "glow-primary",
+    link: "/launchpad",
+    stats: "20+ Projects"
   },
   {
-    id: "governance",
     icon: Vote,
     title: "DAO Governance",
-    description:
-      "Shape the future of the platform through decentralized governance and voting.",
-    gradient: "gradient-primary",
-    shadowClass: "shadow-primary",
-    features: [
-      "Proposal System",
-      "Token Voting",
-      "Treasury Management",
-      "Community Rewards",
-    ],
+    description: "Shape the platform's future through democratic voting. Your voice matters in our community.",
+    gradient: "gradient-governance",
+    glow: "glow-primary",
+    link: "/governance",
+    stats: "100K+ Votes"
   },
   {
-    id: "analytics",
-    icon: BarChart3,
-    title: "Advanced Analytics",
-    description:
-      "Track your performance with comprehensive analytics and insights.",
-    gradient: "gradient-primary",
-    shadowClass: "shadow-primary",
-    features: [
-      "Portfolio Tracking",
-      "P&L Analysis",
-      "Market Data",
-      "Performance Metrics",
-    ],
-  },
-];
-
-const additionalFeatures = [
-  {
-    icon: Zap,
-    title: "Lightning Fast",
-    description: "Sub-second transaction processing",
-  },
-  {
-    icon: Shield,
-    title: "Secure by Design",
-    description: "Multi-layer security with audited contracts",
-  },
-  {
-    icon: Globe,
-    title: "Multi-Chain",
-    description: "Support for 5+ major blockchains",
+    icon: Lock,
+    title: "Multi-Sig Security",
+    description: "Enterprise-grade security with multi-signature wallets, advanced encryption, and regular audits.",
+    gradient: "gradient-accent",
+    glow: "glow-primary",
+    link: "/",
+    stats: "Bank-Grade"
   },
 ];
 
 const FeaturesSection = () => {
   return (
-    <section className="py-20 px-4">
+    <section className="py-24 px-4 relative">
       <div className="container mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Comprehensive{" "}
-            <span className="gradient-primary bg-clip-text text-transparent">
-              Web3 Platform
+        <div className="text-center mb-16 space-y-4 animate-slide-in">
+          <h2 className="text-5xl md:text-6xl font-black">
+            <span className="bg-gradient-to-r from-primary via-accent to-defi bg-clip-text text-transparent">
+              Powerful Features
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need for gaming, DeFi, and NFTs in one seamless
-            ecosystem
+            Everything you need for the complete Web3 experience, all in one platform
           </p>
         </div>
 
-        {/* Main Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {features.map((feature) => {
-            const IconComponent = feature.icon;
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
             return (
-              <Link to={`/${feature.id}`} key={feature.id}>
-                <Card
-                  key={feature.id}
-                  className={`gradient-card border-border/50 hover:${feature.shadowClass} transition-smooth cursor-pointer group`}
-                >
-                  <CardHeader>
-                    <div
-                      className={`w-12 h-12 ${feature.gradient} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-smooth`}
-                    >
-                      <IconComponent className="w-6 h-6 text-white" />
-                    </div>
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
-                    <CardDescription className="text-muted-foreground">
-                      {feature.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {feature.features.map((item, index) => (
-                        <li key={index} className="flex items-center text-sm">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <Button
-                      variant="outline"
-                      className="w-full mt-4 hover:bg-primary/10"
-                    >
-                      Explore {feature.title}
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Link>
-            );
-          })}
-        </div>
+              <Card 
+                key={index} 
+                className="group glass-effect border-border/50 hover:border-primary/50 overflow-hidden relative"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                
+                <CardHeader className="relative">
+                  <div className={`w-16 h-16 rounded-2xl ${feature.gradient} flex items-center justify-center mb-4 ${feature.glow} group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors">
+                    {feature.title}
+                  </CardTitle>
+                  <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mt-2">
+                    {feature.stats}
+                  </div>
+                </CardHeader>
 
-        {/* Additional Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {additionalFeatures.map((feature, index) => {
-            const IconComponent = feature.icon;
-            return (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <IconComponent className="w-8 h-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
+                <CardContent className="relative space-y-4">
+                  <CardDescription className="text-base leading-relaxed">
+                    {feature.description}
+                  </CardDescription>
+                  
+                  <Link to={feature.link}>
+                    <Button 
+                      variant="ghost" 
+                      className="w-full group-hover:bg-primary/10 group-hover:text-primary transition-all"
+                    >
+                      Explore Now →
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
             );
           })}
         </div>

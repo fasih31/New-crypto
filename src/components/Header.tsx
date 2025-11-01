@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useWallet } from "@/hooks/use-wallet";
 import WalletConnectModal from "./WalletConnectModal";
 import logo from "@/assets/logo.png";
+import { ThemeToggle } from "./ThemeToggle";
 
 
 const Header = () => {
@@ -98,8 +99,9 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Connect Wallet Button */}
+        {/* Connect Wallet Button and Theme Toggle */}
         <div className="flex items-center space-x-4">
+          <ThemeToggle />
           {isConnected && address ? (
             <div className="relative hidden md:block" ref={walletMenuRef}>
               <Button

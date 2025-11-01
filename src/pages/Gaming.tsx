@@ -60,25 +60,30 @@ const Gaming = () => {
       <main className="pt-16">
         {/* Hero Section */}
         <section className="py-20 px-4 animated-bg">
-          <div className="container mx-auto text-center">
-            <div className="max-w-3xl mx-auto">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                <span className="gradient-gaming bg-clip-text text-transparent">
+          <div className="container mx-auto px-4 py-8">
+            <div className="mb-12 text-center space-y-4">
+              <h1 className="text-5xl md:text-6xl font-black">
+                <span className="bg-gradient-to-r from-gaming via-gaming-glow to-primary bg-clip-text text-transparent animate-glow">
                   Gaming Hub
                 </span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Play to earn, own your assets, and compete in the ultimate blockchain gaming ecosystem
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Play-to-earn games with real rewards. Compete globally and earn while you play
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="gaming" size="xl">
-                  <Play className="w-5 h-5" />
-                  Start Playing
-                </Button>
-                <Button variant="outline" size="xl">
-                  <Trophy className="w-5 h-5" />
-                  Leaderboards
-                </Button>
+
+              {/* Gaming Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-8">
+                {[
+                  { label: "Active Players", value: "250K+" },
+                  { label: "Total Rewards", value: "$50M" },
+                  { label: "Games Live", value: "15" },
+                  { label: "Tournaments", value: "Daily" }
+                ].map((stat, i) => (
+                  <div key={i} className="p-4 rounded-xl glass-effect border border-gaming/30 hover:border-gaming/60 transition-all">
+                    <div className="text-2xl font-bold text-gaming">{stat.value}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
