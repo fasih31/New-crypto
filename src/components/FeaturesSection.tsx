@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Gamepad2, TrendingUp, Image, Rocket, Vote, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -52,8 +51,8 @@ const features = [
   },
   {
     icon: Shield,
-    title: "Advanced Security",
-    description: "Multi-layer protection with regular audits, insurance coverage, and emergency protocols.",
+    title: "Bank-Grade Security",
+    description: "Multi-signature wallets, smart contract audits, and insurance fund protect your earnings.",
     gradient: "gradient-accent",
     glow: "glow-primary",
     link: "/",
@@ -86,7 +85,7 @@ const FeaturesSection = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className={`absolute inset-0 ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                
+
                 <CardHeader className="relative pb-4">
                   <div className={`w-16 h-16 sm:w-18 sm:h-18 rounded-2xl ${feature.gradient} flex items-center justify-center mb-5 ${feature.glow} group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="w-8 h-8 sm:w-9 sm:h-9 text-white" />
@@ -103,7 +102,7 @@ const FeaturesSection = () => {
                   <CardDescription className="text-sm sm:text-base leading-relaxed font-medium">
                     {feature.description}
                   </CardDescription>
-                  
+
                   <Link to={feature.link}>
                     <Button 
                       variant="ghost" 

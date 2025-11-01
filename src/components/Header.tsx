@@ -36,10 +36,10 @@ const Header = () => {
       <div className="container mx-auto px-4 h-16 sm:h-18 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2.5">
           <div className="w-10 h-10 sm:w-11 sm:h-11 gradient-primary rounded-xl flex items-center justify-center shadow-lg">
-            <img src={logo} alt="NexaVault Logo" className="w-8 h-8" />
+            <img src={logo} alt="CryptoVerse Hub Logo" className="w-8 h-8" />
           </div>
           <span className="text-xl sm:text-2xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            NexaVault
+            CryptoVerse
           </span>
         </Link>
 

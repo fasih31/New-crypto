@@ -26,16 +26,16 @@ const HeroSection = () => {
           {/* Main heading */}
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[1.1] tracking-tight">
             <span className="bg-gradient-to-r from-primary via-accent to-defi bg-clip-text text-transparent animate-glow">
-              NexaVault
+              CryptoVerse
             </span>
             <br />
-            <span className="text-foreground">Decentralized Future</span>
+            <span className="text-foreground">Where Gaming Meets Earning</span>
           </h1>
 
           {/* Subheading */}
           <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium">
-            Experience seamless blockchain innovation with our all-in-one platform. 
-            Trade, earn, play, and govern - all secured by cutting-edge technology.
+            The first all-in-one platform where you earn crypto by playing games, trading assets, 
+            and participating in governance. Real rewards, real blockchain, zero gimmicks.
           </p>
 
           {/* Feature highlights */}

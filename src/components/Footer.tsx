@@ -12,10 +12,10 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-5">
             <h3 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              NexaVault
+              CryptoVerse
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed font-medium">
-              Your trusted gateway to decentralized innovation. Secure, transparent, and community-driven.
+              Earn crypto by playing games, trading, and governing. Join 250K+ users earning daily rewards.
             </p>
             <div className="flex gap-3">
               {[
@@ -88,7 +88,7 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-border/60 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground font-medium text-center sm:text-left">
-            © {currentYear} NexaVault. All rights reserved.
+            © {currentYear} CryptoVerse Hub. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground font-medium">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
